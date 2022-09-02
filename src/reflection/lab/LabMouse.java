@@ -1,10 +1,5 @@
 package reflection.lab;
 
-import annotations.Test1;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-
 public class LabMouse {
     @Deprecated
     int age;

@@ -1,32 +1,34 @@
 package annotations.annotation1;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 //Создать подопытный класс, а этот оставить как класс - анализатор
 public class AnnotTest {
-   static List<String> list = new ArrayList<>();
-    @Test1(name = "Platinum")
-    public void testMethod() {
-        System.out.println("This method is worked hopefully annotation");
-    }
+    static List<String> list = new ArrayList<>();
 
-   static void readAnnotation(Class<?> clazz) {
+
+    static String readAnnotation(Object o) {
+        Class<?> clazz = o.getClass();
         Method[] methods = clazz.getMethods();
-
+        String t = "";
         for (Method m : methods) {
             if (m.isAnnotationPresent(Test1.class)) {
-             Test1 test1 = m.getAnnotation(Test1.class);
-             String expected = test1.name() + " qwerty";
-             list.add(expected);
+                //Получаем доступ к атрибутам
+                Test1 test1 = m.getAnnotation(Test1.class);
+                t = test1.name();
             }
         }
+        return t;
     }
 
     public static void main(String[] args) throws NoSuchMethodException {
-        Class<AnnotTest> clazz = AnnotTest.class;
-        readAnnotation(clazz);
+        AnnotTest test = new AnnotTest();
+        Lab lab = new Lab();
+
+        System.out.println(readAnnotation(lab));
 
 
     }

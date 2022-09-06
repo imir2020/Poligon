@@ -10,15 +10,18 @@ public class AnnotTest {
     static List<String> list = new ArrayList<>();
 
 
-    static String readAnnotation(Object o) {
+    static String readAnnotation(Object o) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class<?> clazz = o.getClass();
         Method[] methods = clazz.getMethods();
         String t = "";
         for (Method m : methods) {
             if (m.isAnnotationPresent(Test1.class)) {
-                //Получаем доступ к атрибутам
+
                 Test1 test1 = m.getAnnotation(Test1.class);
-                t = test1.name();
+                t = test1.name() + " qwerty " + o.getClass();
+
+                //Как создать новый экземпляр класса без метода newInstance()?
+                if(!t.equals("name")) t += "  1/s  "+ clazz.newInstance();//Создаётся новый экземпляр, переданного в параметре, класса.
             }
         }
         return t;
@@ -28,7 +31,15 @@ public class AnnotTest {
         AnnotTest test = new AnnotTest();
         Lab lab = new Lab();
 
-        System.out.println(readAnnotation(lab));
+        try {
+            System.out.println(readAnnotation(lab));
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
 
 
     }

@@ -1,4 +1,4 @@
-package datastructyre;
+package datastructyre.insertsort;
 
 
 public class ArrayBub {

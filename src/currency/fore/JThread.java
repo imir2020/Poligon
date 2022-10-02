@@ -7,6 +7,11 @@ public class JThread  extends Thread{
     }
 
     public void run(){
-        
+        System.out.println(Thread.currentThread().getName());
+        int count = 1;
+        while (!isInterrupted()){
+            System.out.println("Loop " + count++);
+        }
     }
+
 }

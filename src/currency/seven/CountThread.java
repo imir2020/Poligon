@@ -1,7 +1,7 @@
 package currency.seven;
 
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicLong;
+
 
 public class CountThread implements Runnable {
     CommonResource commonResource;

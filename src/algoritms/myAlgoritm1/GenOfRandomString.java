@@ -20,7 +20,7 @@ public class GenOfRandomString {
     String[] mixOfRandom2 = new String[rawSize];
 
     public void readFromFile() {
-        List<String> listForFile = new ArrayList<>();
+        List<String> listForFile;// = new ArrayList<>();
         try {
             Stream<String> stream = Files.lines(Path.of("src/algoritms/myAlgoritm1/InfoOfCompress.txt"));
             listForFile = stream.collect(Collectors.toList());
@@ -33,28 +33,31 @@ public class GenOfRandomString {
         }
     }
 
+    //Подумать над этим методом, и лучше на бумаге
     public void mixGivingData() {
         if (rawSize == 0) return;
         int k = 1;
 
         System.out.println(buffer.length());
-        for (int i = 0; i < (rawSize - 1) / 2; i++) {
+        for (int i = 0; i < (rawSize - 1)/2; i++) {
             if (i % 2 == 0) {
-                mixOfRandom[i] = String.valueOf(buffer.charAt(i));
+                mixOfRandom[i++] = String.valueOf(buffer.charAt(i));
             }
+
             // mixOfRandom[i] = String.valueOf(buffer.charAt(i));
-            System.out.print(mixOfRandom[i] + " " + i + " ");
+            //System.out.print(mixOfRandom[i] + " " + i + " ч я ");
+
         }
 
 
+//        // System.out.println();
+//        for (int j = rawSize ; j >=0; j--) {
+//            char temp = buffer.charAt(j);
+//            mixOfRandom[j] = String.valueOf(temp);
+//            //System.out.print(mixOfRandom[j] + " " + j + " нчя ");
+//            j++;
 
-        System.out.println();
-        for (int j = (rawSize - 1) / 2; j < rawSize; j++) {
-            char temp = buffer.charAt(j);
-            mixOfRandom[j] = String.valueOf(temp);
-            System.out.print(mixOfRandom[j] + " " + j + " ");
-            j++;
-        }
+    //   }
 
 
         //System.out.println(buffer);
@@ -70,8 +73,8 @@ public class GenOfRandomString {
         System.out.println("----------------------");
 
         one.mixGivingData();
-//        for (int i = 0; i <one.mixOfRandom.length; i++) {
-//            System.out.print(one.mixOfRandom[i]);
-//        }
+        for (int i = 0; i < one.mixOfRandom.length; i++) {
+            System.out.print(one.mixOfRandom[i]);
+        }
     }
 }

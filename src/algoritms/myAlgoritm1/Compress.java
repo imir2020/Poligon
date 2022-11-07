@@ -11,6 +11,8 @@ For compress generate info before record it in file.txt
 public class Compress {
     private static final int SIZE = 128;
     private Dictionary dict;
+    private static final int ZERO = 48;
+    private static final int ONE = 49;
 
     //generate info in this method
     public void generateInfo() {
@@ -25,15 +27,15 @@ public class Compress {
     }
 
     public String readInfo() {
-        String temp = "";//Заменить String на StringBuilder для увеличения скорости
+        String temp = "";                                   //Заменить String на StringBuilder для увеличения скорости
+        int c;
         File file = new File("src/algoritms/myAlgoritm1/RandomInfo.txt");
         try (FileReader fileReader = new FileReader(file)) {
-            int c;
+
             while ((c = fileReader.read()) != -1) {
                 //48 is 0, 49 is 1
-                if (c == 49) temp += String.valueOf(1);
-                if (c == 48) temp += String.valueOf(0);
-
+                if (c == ONE) temp += String.valueOf(1);
+                if (c == ZERO) temp += String.valueOf(0);
             }
 
         } catch (FileNotFoundException e) {
@@ -61,9 +63,9 @@ public class Compress {
     //Теперь нужен метод, который будет сжимать данные
     public String compress() {
         String temp = "";
-         dict = new Dictionary();
-        int count = 0;
-        int halfBite = 4;
+        dict = new Dictionary();//создать словарь
+        int count = 0;// счётчик
+        int halfBite = 4;//размер массива, куда считывается сгенерированная строка числами из метода generateOfRandom()
         int i = 0;
         String[] buff = new String[halfBite];//Заменить на конкатенацию строки, причём заменить на метод  StringBuilder.append()
         String str = readInfo();
@@ -91,7 +93,7 @@ public class Compress {
         return temp;
     }
 
-
+    //Генерация 0 и 1 в случайном порядке, и превращение их из цифр в символы строки
     String generateOfRandom() {
         String randInt = "";
         Random rand = new Random();

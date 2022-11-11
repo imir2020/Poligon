@@ -39,28 +39,28 @@ public class GenOfRandomString {
         int k = 1;
 
         System.out.println(buffer.length());
-        for (int i = 0; i < (rawSize - 1)/2; i++) {
+        for (int i = 0; i < rawSize/2; i++) {
             if (i % 2 == 0) {
                 mixOfRandom[i++] = String.valueOf(buffer.charAt(i));
             }
+//            if (i%2 !=0){
+//                mixOfRandom[i] = String.valueOf(buffer.charAt(i));
+//            }
+        }
 
-            // mixOfRandom[i] = String.valueOf(buffer.charAt(i));
-            //System.out.print(mixOfRandom[i] + " " + i + " ч я ");
+//Это асимметричная задача!!!!!!!!!!!!
+        System.out.println();
+        for (int j = rawSize - 1; j >= ((rawSize - 1)/2)&&k<rawSize; j--,k++) {
+
+                mixOfRandom[k++] = String.valueOf(buffer.charAt(j));
+
+            System.out.print(mixOfRandom[j] + " " + j + " нчя ");
+
 
         }
 
 
-//        // System.out.println();
-//        for (int j = rawSize ; j >=0; j--) {
-//            char temp = buffer.charAt(j);
-//            mixOfRandom[j] = String.valueOf(temp);
-//            //System.out.print(mixOfRandom[j] + " " + j + " нчя ");
-//            j++;
-
-    //   }
-
-
-        //System.out.println(buffer);
+        System.out.println(buffer);
     }
 
     public static void main(String[] args) {
@@ -74,7 +74,7 @@ public class GenOfRandomString {
 
         one.mixGivingData();
         for (int i = 0; i < one.mixOfRandom.length; i++) {
-            System.out.print(one.mixOfRandom[i]);
+            System.out.print(one.mixOfRandom[i] + " ");
         }
     }
 }

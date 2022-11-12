@@ -1,7 +1,6 @@
 package algoritms.myAlgoritm1;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Random;
 
 
@@ -10,7 +9,7 @@ For compress generate info before record it in file.txt
  */
 public class Compress {
     private static final int SIZE = 128;
-    private Dictionary dict;
+    private Dictionary dictionary;
     private static final int ZERO = 48;
     private static final int ONE = 49;
 
@@ -63,29 +62,26 @@ public class Compress {
     //Теперь нужен метод, который будет сжимать данные
     public String compress() {
         String temp = "";
-        dict = new Dictionary();//создать словарь
+        dictionary = new Dictionary();//создать словарь
         int count = 0;// счётчик
         int halfBite = 4;//размер массива, куда считывается сгенерированная строка числами из метода generateOfRandom()
         int i = 0;
         String[] buff = new String[halfBite];//Заменить на конкатенацию строки, причём заменить на метод  StringBuilder.append()
-        String str = readInfo();
+        String str = readInfo();//присвоение сгенерированной строки к переменной
 
         while (i < str.length()) {
-            buff[count++] = String.valueOf(str.charAt(i));//
+            buff[count++] = String.valueOf(str.charAt(i));//считывание кусочка строки в буфер
 
             if (count == halfBite) {
                 String likeKey = "";
                 for (int j = 0; j < buff.length; j++) {
-                    likeKey += buff[j];
+                    likeKey += buff[j];//считывание и добавка к строке, содержимого String[] buff
                 }
-                //System.out.println(likeKey + " key");
-                temp += dict.getDictionary().get(likeKey);//Заменить на конкатенацию строки, причём заменить на метод  StringBuilder.append()
-                // System.out.println(temp + " temp");
-                //  System.out.println(Arrays.toString(buff) + " 1");//test
-                for (int j = 0; j < halfBite; j++) {
+                temp += dictionary.getDictionary().get(likeKey);//Заменить на конкатенацию строки, причём заменить на метод  StringBuilder.append()
+                for (int j = 0; j < halfBite; j++) {//Обнуление буферного массива String[] buff
                     buff[j] = null;
                 }
-                count = 0;
+                count = 0;//Обнуление счётчика уровня заполнения буферного массива String[] buff
             }
             i++;
         }

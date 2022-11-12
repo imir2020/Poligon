@@ -7,6 +7,7 @@ public class TreeApp {
         tree.insert(50, 1.5);//Вставка трёх узлов
         tree.insert(25, 1.7);
         tree.insert(75, 1.9);
+        //tree.inOrder(tree.root);
 
         Node found = tree.find(25);//Поиск узла с ключом 25
         if (found!=null) {

@@ -3,10 +3,7 @@ package algoritms.myAlgoritm1;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,8 +13,9 @@ For filling random symbols for file.txt
 public class GenOfRandomString {
     int rawSize = 32;
     String buffer = "";
-    String[] mixOfRandom = new String[rawSize];
-    String[] mixOfRandom2 = new String[rawSize];
+    String[] firstHalfOfstr = new String[rawSize/2];
+    String[] secondHalfOfstr = new String[rawSize/2];
+    String [] mixOfRandom = new String[rawSize];
 
     public void readFromFile() {
         List<String> listForFile;// = new ArrayList<>();
@@ -36,28 +34,17 @@ public class GenOfRandomString {
     //Подумать над этим методом, и лучше на бумаге
     public void mixGivingData() {
         if (rawSize == 0) return;
-        int k = 1;
+        int k = 0;
 
         System.out.println(buffer.length());
-        for (int i = 0; i < rawSize/2; i++) {
-            if (i % 2 == 0) {
-                mixOfRandom[i++] = String.valueOf(buffer.charAt(i));
-            }
-//            if (i%2 !=0){
-//                mixOfRandom[i] = String.valueOf(buffer.charAt(i));
-//            }
+        for (int i = 0; i < firstHalfOfstr.length; i++) {//первая половина строки в массив mixOfRandom
+            firstHalfOfstr[i] = String.valueOf(buffer.charAt(i));
+        }
+        for (int i =buffer.length()/2; i< buffer.length(); i++) {//вторая половина строки в массив reversMixOfRandom
+            secondHalfOfstr[k++] = String.valueOf(buffer.charAt(i));
         }
 
-//Это асимметричная задача!!!!!!!!!!!!
-        System.out.println();
-        for (int j = rawSize - 1; j >= ((rawSize - 1)/2)&&k<rawSize; j--,k++) {
 
-                mixOfRandom[k++] = String.valueOf(buffer.charAt(j));
-
-            System.out.print(mixOfRandom[j] + " " + j + " нчя ");
-
-
-        }
 
 
         System.out.println(buffer);
@@ -73,8 +60,15 @@ public class GenOfRandomString {
         System.out.println("----------------------");
 
         one.mixGivingData();
-        for (int i = 0; i < one.mixOfRandom.length; i++) {
-            System.out.print(one.mixOfRandom[i] + " ");
+        for (int i = 0; i < one.firstHalfOfstr.length; i++) {
+            System.out.print(one.firstHalfOfstr[i] + " ");
+
+
+        }
+        System.out.println();
+        for (int i = 0; i < one.firstHalfOfstr.length; i++) {
+            System.out.print(one.secondHalfOfstr[i] + " ");
+
         }
     }
 }

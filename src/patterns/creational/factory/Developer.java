@@ -1,4 +1,4 @@
-package patterns.creational.fabric;
+package patterns.creational.factory;
 
 public interface Developer {
     public void writeCode();

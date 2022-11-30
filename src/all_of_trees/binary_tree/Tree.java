@@ -6,7 +6,6 @@ public class Tree {
     private Node root;//Единственное поле данных
 
     public Node find(int key) {                      //Поиск узла с заданным ключом(предполагается, что дерево не пустое)
-        // if(root == null)root = new Node();
         Node current = root;                        //Начать с корневого узла
         while (current.iData != key) {              //Пока не найдено совпадение
             if (key < current.iData)
@@ -19,7 +18,6 @@ public class Tree {
     }
 
     public void insert(int id, double dd) {
-        //Node newNode = (root == null) ? new Node() : root;
         Node newNode = new Node();                               //Создание нового узла
         newNode.iData = id;                                      //Вставка данных
         newNode.fData = dd;

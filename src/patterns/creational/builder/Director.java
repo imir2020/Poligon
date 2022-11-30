@@ -1,4 +1,4 @@
-package patterns.creational.abstractfactory.builder;
+package patterns.creational.builder;
 
 public class Director {
     WebSiteBuilder builder;

@@ -1,4 +1,4 @@
-package patterns.creational.fabric;
+package patterns.creational.factory;
 
 public class Program {
 
@@ -6,6 +6,7 @@ public class Program {
        DeveloperFactory developerFactory = createDeveloperBySpeciality("php");
        Developer developer = developerFactory.createDeveloper();
        developer.writeCode();
+
        developerFactory = new CppDeveloperFactory();
        developer = developerFactory.createDeveloper();
        developer.writeCode();

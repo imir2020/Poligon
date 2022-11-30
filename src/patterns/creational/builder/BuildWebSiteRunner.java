@@ -1,4 +1,4 @@
-package patterns.creational.abstractfactory.builder;
+package patterns.creational.builder;
 
 public class BuildWebSiteRunner {
     public static void main(String[] args) {

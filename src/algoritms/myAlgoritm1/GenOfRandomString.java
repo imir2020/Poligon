@@ -59,12 +59,7 @@ public class GenOfRandomString {
             else if (i != 0) mixOfRandom[i * 2] = firstHalfOfstr[i];
 
         }
-        //int i = 1;
-//        while (i<secondHalfOfstr.length){
-//            if (mixOfRandom[i]!= null){
-//                mixOfRandom[i] = secondHalfOfstr[i];
-//            }
-//        }
+
         for (int i = 0; i < secondHalfOfstr.length; i++) {
             if (i == 0) {
                 int buff = i + 1;

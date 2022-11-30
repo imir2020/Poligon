@@ -14,7 +14,6 @@ public class ProgrammLoger {
     }
 
     private ProgrammLoger() {
-
     }
 
     public void addLogInfo(String logInfo) {

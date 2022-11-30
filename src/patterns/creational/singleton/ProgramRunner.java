@@ -15,7 +15,7 @@ public class ProgramRunner {
         ProgrammLoger.getProgrammLoger().addLogInfo("Third log");
         ProgrammLoger.getProgrammLoger().addLogInfo("Forth log");
 
-        ProgrammLoger.getProgrammLoger().showLogFile();
+        ProgrammLoger.getProgrammLoger().showLogFile();//статическая переменная инициализируется первой.
 
 
     }

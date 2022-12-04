@@ -45,11 +45,9 @@ public class Tree {
         }
     }
 
-    public void delete(int id) {
 
-    }
     //Другие методы
-
+    // Симметричный обход дерева
     private void inOrder(Node localRoot) {
         if (localRoot != null) {
             inOrder(localRoot.leftChild);
@@ -57,5 +55,51 @@ public class Tree {
             inOrder(localRoot.rightChild);
         }
     }
-    //Конец класса Tree
+
+    //Удаление листового узла бинарного дерева
+    // Удаление узла с заданным ключом, предполагается, что дерево не пусто
+    public boolean delete(int key) {
+        // Удаление узла без потомков
+        Node current = root;
+        Node parrent = root;
+        boolean isLeftChild = true;
+
+        while (current.iData != key) {
+            parrent = current;
+            if (key < current.iData) {                     //Двигаться налево?
+                isLeftChild = true;
+                current = current.leftChild;
+            } else {                                       //Или направо?
+                isLeftChild = false;
+                current = current.rightChild;
+            }
+            if (current == null) return false;              //Узел не найден, конец цепочки
+        }
+
+        //Удаляемый узел найден
+        //Если узел не имеет потомков, он просто удаляется
+        if (current.leftChild == null && current.rightChild == null) {
+            if (current == root) root = null;                      //Если узел является корневым,
+                // - дерево полностью очищается
+
+            else if (isLeftChild) parrent.leftChild = null;         //Узел отсоединяется от родителя
+            else parrent.rightChild = null;
+        }
+
+        //Удаление узла с одним потомком
+        //Если нет правого потомка, узел заменяется левым поддеревом
+        else if (current.rightChild == null)
+            if (current == root) root = current.leftChild;
+            else if (isLeftChild) parrent.leftChild = current.leftChild; //Левый потомок родителя
+            else parrent.rightChild = current.leftChild;                 //Правый потомок родителя
+
+        //Если нет левого потомка, узел заменяется правым поддеревом
+            else if(current.leftChild ==null)
+                if (current ==null)root = current.rightChild;
+                else if (isLeftChild)parrent.leftChild = current.rightChild;  // Левый потомок родителя
+                else parrent.rightChild = current.rightChild;                 // Правый потомок родителя
+        return isLeftChild;
+    }
+
+
 }
